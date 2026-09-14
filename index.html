@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aziz Marnissi — Embedded AI & FPGA Engineer</title>
+<meta name="description" content="Aziz Marnissi — Electrical Engineering student specializing in Hardware for AI, FPGA acceleration and Edge Computing.">
+<meta name="theme-color" content="#0B1220">
+<style>
+:root{
+  --bg:#0B1220;
+  --bg-alt:#0F1A2B;
+  --card:#121D30;
+  --border:#1E2C44;
+  --text:#E7ECF3;
+  --muted:#8FA0B8;
+  --accent:#3ED6B5;
+  --accent2:#5B8DEF;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:100px 0}
+h1,h2,h3{font-weight:700}
+.eyebrow{
+  color:var(--accent);
+  font-family:monospace;
+  font-size:0.85rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+  display:block;
+}
+h2.section-title{font-size:2.1rem;margin-bottom:50px}
+
+/* NAV */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(11,18,32,0.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1100px;margin:0 auto;padding:16px 24px;
+}
+.logo{font-weight:800;font-size:1.1rem;color:var(--accent)}
+.logo span{color:var(--text)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:0.92rem;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.burger span{width:24px;height:2px;background:var(--text)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding-top:80px;
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 75% 20%, rgba(62,214,181,0.12), transparent 45%),
+             radial-gradient(circle at 20% 80%, rgba(91,141,239,0.12), transparent 45%);
+  pointer-events:none;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.3fr 0.9fr;gap:60px;align-items:center;
+  position:relative;z-index:1;
+}
+.hero h1{font-size:3.2rem;line-height:1.15;margin:14px 0 10px}
+.hero h1 .accent{color:var(--accent)}
+.typing{
+  font-family:monospace;color:var(--accent2);font-size:1.2rem;min-height:1.6rem;margin-bottom:18px;
+}
+.typing::after{content:'|';animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.hero p.desc{color:var(--muted);max-width:520px;margin-bottom:30px;font-size:1.02rem}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.btn{
+  padding:13px 26px;border-radius:8px;font-weight:600;font-size:0.92rem;
+  transition:transform .2s, box-shadow .2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary{background:var(--accent);color:#06110D}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(62,214,181,0.25)}
+.btn-outline{border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.social-row{display:flex;gap:18px}
+.social-row a{color:var(--muted);font-size:0.9rem;border:1px solid var(--border);padding:8px 14px;border-radius:8px;transition:.2s}
+.social-row a:hover{color:var(--accent);border-color:var(--accent)}
+
+.hero-photo-wrap{
+  display:flex;justify-content:center;position:relative;
+}
+.hero-photo{
+  width:280px;height:280px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--border);
+  box-shadow:0 0 0 10px rgba(62,214,181,0.06), 0 20px 50px rgba(0,0,0,0.4);
+}
+.badge-float{
+  position:absolute;background:var(--card);border:1px solid var(--border);
+  padding:8px 14px;border-radius:10px;font-size:0.8rem;font-family:monospace;
+  color:var(--accent);box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+.badge1{top:10px;left:-10px}
+.badge2{bottom:20px;right:-20px;color:var(--accent2)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-text p{color:var(--muted);margin-bottom:16px}
+.about-text b{color:var(--text)}
+.stats-row{display:flex;gap:36px;margin-top:34px;flex-wrap:wrap}
+.stat h3{font-size:2.2rem;color:var(--accent)}
+.stat span{color:var(--muted);font-size:0.85rem}
+.about-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px;
+}
+.about-card ul{list-style:none}
+.about-card li{
+  display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);
+  font-size:0.92rem;color:var(--muted);
+}
+.about-card li:last-child{border-bottom:none}
+.about-card li b{color:var(--text)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.skill-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px;transition:transform .25s, border-color .25s;
+}
+.skill-card:hover{transform:translateY(-6px);border-color:var(--accent)}
+.skill-card h3{font-size:1rem;margin-bottom:14px;color:var(--accent)}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-size:0.78rem;background:var(--bg-alt);border:1px solid var(--border);
+  padding:5px 10px;border-radius:20px;color:var(--muted);
+}
+
+/* EXPERIENCE / TIMELINE */
+.timeline{position:relative;padding-left:32px;border-left:2px solid var(--border)}
+.tl-item{position:relative;margin-bottom:44px}
+.tl-item::before{
+  content:'';position:absolute;left:-39px;top:4px;
+  width:14px;height:14px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 4px rgba(62,214,181,0.15);
+}
+.tl-item h3{font-size:1.15rem}
+.tl-item .role-meta{color:var(--accent2);font-size:0.88rem;font-family:monospace;margin:4px 0 12px}
+.tl-item ul{color:var(--muted);padding-left:18px;font-size:0.94rem}
+.tl-item li{margin-bottom:6px}
+.tl-item .skillsline{margin-top:10px;font-size:0.82rem;color:var(--muted);font-style:italic}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px}
+.edu-card h3{font-size:1.05rem;margin-bottom:6px}
+.edu-card .meta{color:var(--accent);font-size:0.85rem;font-family:monospace;margin-bottom:10px}
+.edu-card p{color:var(--muted);font-size:0.92rem}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+.project-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:26px;display:flex;flex-direction:column;transition:transform .25s,border-color .25s;
+}
+.project-card:hover{transform:translateY(-6px);border-color:var(--accent2)}
+.project-card h3{font-size:1.1rem;margin-bottom:10px;color:var(--text)}
+.project-card p.body{color:var(--muted);font-size:0.9rem;margin-bottom:14px;flex:1}
+.project-card .tag-row{margin-top:auto}
+.pc-icon{
+  width:44px;height:44px;border-radius:10px;background:rgba(62,214,181,0.12);
+  display:flex;align-items:center;justify-content:center;color:var(--accent);
+  font-size:1.2rem;margin-bottom:16px;
+}
+
+/* CONTACT */
+.contact-wrap{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:50px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+}
+.contact-wrap h2{margin-bottom:14px}
+.contact-wrap p{color:var(--muted);margin-bottom:24px}
+.contact-list{list-style:none}
+.contact-list li{display:flex;gap:12px;align-items:center;margin-bottom:16px;color:var(--muted);font-size:0.95rem}
+.contact-list b{color:var(--text)}
+.contact-icons{display:flex;gap:14px;margin-top:10px}
+.contact-icons a{
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;transition:.2s;color:var(--muted);
+}
+.contact-icons a:hover{color:var(--accent);border-color:var(--accent)}
+
+footer{
+  border-top:1px solid var(--border);padding:30px 0;text-align:center;color:var(--muted);font-size:0.85rem;
+}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-photo-wrap{order:-1}
+  .btn-row,.social-row{justify-content:center}
+  .about-grid{grid-template-columns:1fr}
+  .edu-grid{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr;padding:32px}
+  .nav-links{
+    position:fixed;top:64px;right:0;background:var(--bg-alt);
+    flex-direction:column;width:220px;padding:20px;border:1px solid var(--border);
+    border-radius:0 0 0 12px;transform:translateX(100%);transition:.3s;
+  }
+  .nav-links.open{transform:translateX(0)}
+  .burger{display:flex}
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+  <a href="#home" class="logo">Aziz<span>.Marnissi</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="burger" id="burger"><span></span><span></span><span></span></button>
+</nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Hello, I'm</span>
+      <h1>Aziz <span class="accent">Marnissi</span></h1>
+      <div class="typing" id="typing"></div>
+      <p class="desc">Final-year Electrical Engineering student at ENIT, passionate about Hardware for AI and Edge Computing. I bridge algorithms and silicon to build ultra-efficient AI inference systems — from FPGA acceleration to embedded intelligence on microcontrollers.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary">Contact Me</a>
+        <a href="#projects" class="btn btn-outline">View Projects</a>
+      </div>
+      <div class="social-row">
+        <a href="https://linkedin.com/in/aziz-marnissi" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Aziz-Marnissi" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:aziz.marnissi@etudiant-enit.utm.tn">Email</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <span class="badge-float badge1">Embedded AI</span>
+      <img class="hero-photo" src="profile.jpg" alt="Aziz Marnissi">
+      <span class="badge-float badge2">FPGA · HLS</span>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-text">
+      <span class="eyebrow">About Me</span>
+      <h2 class="section-title" style="margin-bottom:20px">Who I am</h2>
+      <p>I'm an <b>Electrical Engineering student</b> at the National Engineering School of Tunis (ENIT), specializing in the SMART track — Embedded Systems, Edge AI, FPGA and IoT.</p>
+      <p>My work sits at the intersection of <b>hardware and machine learning</b>: accelerating LLM primitives on FPGA with HLS, deploying quantized neural networks on microcontrollers, and building closed-loop robotics pipelines with real hardware validation.</p>
+      <p>I'm currently seeking a <b>4-6 month internship</b> in Embedded AI, FPGA, or AI Hardware Acceleration.</p>
+      <div class="stats-row">
+        <div class="stat"><h3>3+</h3><span>Embedded AI Projects</span></div>
+        <div class="stat"><h3>2</h3><span>Internships</span></div>
+        <div class="stat"><h3>49.9×</h3><span>Best FPGA Speedup</span></div>
+      </div>
+    </div>
+    <div class="about-card">
+      <ul>
+        <li><span>Location</span><b>Tunis, Tunisia</b></li>
+        <li><span>Degree</span><b>Electrical Eng. — ENIT</b></li>
+        <li><span>Focus</span><b>Embedded AI / FPGA</b></li>
+        <li><span>Email</span><b>aziz.marnissi@etudiant-enit.utm.tn</b></li>
+        <li><span>Phone</span><b>+216 23 397 405</b></li>
+        <li><span>Languages</span><b>AR, FR, EN, DE (A2)</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--bg-alt)">
+  <div class="container">
+    <span class="eyebrow">What I work with</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <div class="tag-row">
+          <span class="tag">C / C++</span><span class="tag">Python</span><span class="tag">VHDL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Platforms</h3>
+        <div class="tag-row">
+          <span class="tag">PYNQ-Z2</span><span class="tag">Zybo</span><span class="tag">Hailo NPU</span>
+          <span class="tag">Raspberry Pi 5</span><span class="tag">BeagleBone Black</span>
+          <span class="tag">ESP32</span><span class="tag">STM32</span><span class="tag">Jetson Orin/Nano</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>EDA Tools</h3>
+        <div class="tag-row">
+          <span class="tag">Vitis HLS</span><span class="tag">Vivado</span><span class="tag">Vitis</span><span class="tag">MATLAB</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Machine Learning</h3>
+        <div class="tag-row">
+          <span class="tag">TensorFlow</span><span class="tag">PyTorch</span><span class="tag">scikit-learn</span>
+          <span class="tag">OpenCV</span><span class="tag">CUDA</span><span class="tag">TensorRT</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Robotics</h3>
+        <div class="tag-row">
+          <span class="tag">ROS2</span><span class="tag">Gazebo</span><span class="tag">PX4</span><span class="tag">MAVLink</span><span class="tag">QGroundControl</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Certifications</h3>
+        <div class="tag-row">
+          <span class="tag">Supervised Learning (DataCamp)</span>
+          <span class="tag">Deep Learning w/ PyTorch (DataCamp)</span>
+          <span class="tag">Intro to IoT (Cisco)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <span class="eyebrow">Professional Journey</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <h3>FPGA &amp; AI Acceleration Intern — WiseCorp</h3>
+        <div class="role-meta">Tunis · June – July 2026</div>
+        <ul>
+          <li>Conducted a feasibility study of HLS kernels to determine which LLM primitives deserved hardware acceleration on FPGA.</li>
+          <li>Achieved compute speedups up to 49.9× (RoPE), 16.4× (SiLU), 7.5× (Softmax), 9.9× (RMSNorm), 10× (MatMul), 1.4× (Greedy Sampler) vs. CPU.</li>
+          <li>Studied FP16 vs. INT4 trade-offs on hardware resources, accuracy and latency; reduced DSP/BRAM usage by up to 20%/39%.</li>
+        </ul>
+        <div class="skillsline">Skills: HLS · Python · Vitis HLS · Vivado</div>
+      </div>
+      <div class="tl-item">
+        <h3>Industrial Computing Intern — SERGAZ</h3>
+        <div class="role-meta">Tunis · June 2025</div>
+        <ul>
+          <li>Monitoring and diagnostics of three-phase motors and electrical cabinets for gas turbines.</li>
+          <li>Real-time monitoring (vibration/temperature), anomaly logging and preventive checks.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" style="background:var(--bg-alt)">
+  <div class="container">
+    <span class="eyebrow">Academic Background</span>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <h3>National Engineering School of Tunis (ENIT)</h3>
+        <div class="meta">2024 – Present</div>
+        <p>Engineering Degree in Electrical Engineering — SMART Track (Embedded Systems, Edge AI, FPGA, IoT).</p>
+      </div>
+      <div class="edu-card">
+        <h3>Preparatory Institute for Engineering Studies of Nabeul (IPEIN)</h3>
+        <div class="meta">2022 – 2024</div>
+        <p>Intensive preparatory classes in Mathematics &amp; Physics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <span class="eyebrow">Selected Work</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="pc-icon">✈</div>
+        <h3>Deep Learning-Based Drone Landing Control (UAV)</h3>
+        <p class="body">Closed-loop HIL simulation pipeline (ROS2, Gazebo, PX4) to validate autonomous landing control before flight. Deployed on Raspberry Pi 5 with Hailo-8L NPU — 40 FPS at 25ms (65× vs. CPU), 87.5% F1 after INT8 quantization.</p>
+        <div class="tag-row">
+          <span class="tag">ROS2</span><span class="tag">Gazebo</span><span class="tag">PX4</span><span class="tag">YOLOv8</span><span class="tag">OpenCV</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="pc-icon">🛡</div>
+        <h3>SecureAI_IDS — TinyML Intrusion Detection for CAN Bus</h3>
+        <p class="body">Embedded AI system detecting anomalies and attacks (flooding, replay, spoofing, spike) on CAN bus via a pruned and quantized neural network. Structural pruning validated on real ESP32 hardware via TFLite Micro.</p>
+        <div class="tag-row">
+          <span class="tag">TensorFlow</span><span class="tag">TFLite Micro</span><span class="tag">ESP32</span><span class="tag">PlatformIO</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="pc-icon">🗣</div>
+        <h3>TinyGRU-ESP32: Embedded Text Command Controller</h3>
+        <p class="body">Bidirectional GRU intent-recognition model (~81K params) in PyTorch, 94.8% accuracy, deployed on ESP32 via quantized C inference (FP32/INT8/Hybrid) driving real GPIO actuators. 3.6× inference speedup, 39% flash savings.</p>
+        <div class="tag-row">
+          <span class="tag">PyTorch</span><span class="tag">C</span><span class="tag">Quantization</span><span class="tag">ESP32</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="pc-icon">⚙</div>
+        <h3>RISC-V CPU with Custom Peripherals</h3>
+        <p class="body">Custom RISC-V core implemented on Zybo FPGA with custom UART, PWM and I2C peripherals, validated on bare metal.</p>
+        <div class="tag-row">
+          <span class="tag">VHDL</span><span class="tag">Zybo FPGA</span><span class="tag">RISC-V</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--bg-alt)">
+  <div class="container">
+    <div class="contact-wrap">
+      <div>
+        <span class="eyebrow">Let's build something</span>
+        <h2>Get In Touch</h2>
+        <p>Open to internship opportunities in Embedded AI, FPGA and AI Hardware Acceleration. Feel free to reach out.</p>
+        <div class="contact-icons">
+          <a href="mailto:aziz.marnissi@etudiant-enit.utm.tn" title="Email">✉</a>
+          <a href="https://linkedin.com/in/aziz-marnissi" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a href="https://github.com/Aziz-Marnissi" target="_blank" rel="noopener" title="GitHub">GH</a>
+        </div>
+      </div>
+      <ul class="contact-list">
+        <li>✉ &nbsp;<b>aziz.marnissi@etudiant-enit.utm.tn</b></li>
+        <li>📞 &nbsp;<b>+216 23 397 405</b></li>
+        <li>📍 &nbsp;<b>Tunis, Tunisia</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; <span id="year"></span> Aziz Marnissi. All rights reserved.
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+const words = ["Embedded AI Engineer", "FPGA Developer", "Edge Computing Enthusiast", "Robotics Builder"];
+let wi = 0, ci = 0, deleting = false;
+const typingEl = document.getElementById('typing');
+function tick(){
+  const word = words[wi];
+  typingEl.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
+  if(!deleting && ci === word.length + 1){ deleting = true; setTimeout(tick, 1200); return; }
+  if(deleting && ci === 0){ deleting = false; wi = (wi+1) % words.length; }
+  setTimeout(tick, deleting ? 40 : 80);
+}
+tick();
+</script>
+</body>
+</html>
